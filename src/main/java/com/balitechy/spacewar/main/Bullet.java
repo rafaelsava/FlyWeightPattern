@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 public class Bullet {
 	
-	private double x;
+	double x;
 	private double y;
 	public static final int WIDTH = 11;
 	public static final int HEIGHT = 21;
@@ -27,5 +27,9 @@ public class Bullet {
 	
 	public double getY(){
 		return y;
+	}
+
+	public double getX() {
+		return x;
 	}
 }
