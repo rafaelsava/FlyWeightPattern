@@ -235,7 +235,7 @@ public class Game extends Canvas implements Runnable {
 			backgRenderer.render(g, this);
 			player.render(g);
 			bullets.render(g);
-			enemies.render(g); // Añade esto después de renderizar balas
+			enemies.render(g);
 
 
 		} catch (IOException e) {
@@ -263,26 +263,17 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	private void checkCollisions() {
-		// Obtener copias seguras de todas las listas
-		ArrayList<Bullet> bulletsCopy = new ArrayList<>(bullets.getBullets());
+		ArrayList<GameBullet> bulletsCopy = new ArrayList<>(bullets.getBullets());
 		ArrayList<GameEnemy> enemiesType1Copy = enemies.getEnemiesType1Copy();
 		ArrayList<GameEnemy> enemiesType2Copy = enemies.getEnemiesType2Copy();
 
-		// Listas temporales para elementos a eliminar
-		ArrayList<Bullet> bulletsToRemove = new ArrayList<>();
+		ArrayList<GameBullet> bulletsToRemove = new ArrayList<>();
 		ArrayList<GameEnemy> enemiesType1ToRemove = new ArrayList<>();
 		ArrayList<GameEnemy> enemiesType2ToRemove = new ArrayList<>();
 
-		// Verificar colisiones con Enemy (Tipo 1)
-		for (Bullet bullet : bulletsCopy) {
-			Rectangle bulletBounds = new Rectangle(
-					(int) bullet.getX(),
-					(int) bullet.getY(),
-					Bullet.WIDTH,
-					Bullet.HEIGHT
-			);
+		for (GameBullet bullet : bulletsCopy) {
+			Rectangle bulletBounds = bullet.getBounds();
 
-			// Colisión con Enemy tipo 1
 			for (GameEnemy  enemy : enemiesType1Copy) {
 				if (bulletBounds.intersects(enemy.getBounds())) {
 					bulletsToRemove.add(bullet);
@@ -290,7 +281,6 @@ public class Game extends Canvas implements Runnable {
 				}
 			}
 
-			// Colisión con Enemy tipo 2
 			for (GameEnemy  enemy : enemiesType2Copy) {
 				if (bulletBounds.intersects(enemy.getBounds())) {
 					bulletsToRemove.add(bullet);
@@ -299,13 +289,11 @@ public class Game extends Canvas implements Runnable {
 			}
 		}
 
-		// Procesar eliminaciones después de la iteración
 		bullets.getBullets().removeAll(bulletsToRemove);
 		enemies.getEnemiesType1().removeAll(enemiesType1ToRemove);
 		enemies.getEnemiesType2().removeAll(enemiesType2ToRemove);
 	}
 
-	// Método actualizado para colisiones con el jugador
 	private void checkPlayerCollision() {
 		Rectangle playerBounds = new Rectangle(
 				(int) player.getX(),
@@ -314,7 +302,6 @@ public class Game extends Canvas implements Runnable {
 				Player.HEIGHT
 		);
 
-		// Verificar contra ambos tipos de enemigos
 		for (GameEnemy enemy : enemies.getEnemiesType1Copy()) {
 			if (playerBounds.intersects(enemy.getBounds())) {
 				triggerGameOver();

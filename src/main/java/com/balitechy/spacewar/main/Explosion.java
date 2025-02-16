@@ -16,7 +16,6 @@ public class Explosion {
 
     public Explosion(Game game) {
         this.game = game;
-        // Cargar frames de explosión (ajusta las coordenadas según tu sprite)
         SpritesImageLoader sprites = game.getSprites();
         frames[0] = sprites.getImage(474, 15, 50, 50);
         frames[1] = sprites.getImage(468, 77, 70, 70);
@@ -24,7 +23,7 @@ public class Explosion {
     }
 
     public void activate(double x, double y) {
-        this.x = x - 22; // Centrar la explosión
+        this.x = x - 22;
         this.y = y - 22;
         this.active = true;
         this.frame = 0;
@@ -39,7 +38,7 @@ public class Explosion {
                 } else {
                     active = false;
                 }
-                currentDelay = 0; // Reiniciar contador
+                currentDelay = 0;
             }
         }
     }

@@ -7,41 +7,39 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BulletController {
-	private LinkedList<Bullet> bl = new LinkedList<>();
-
-
+	private LinkedList<GameBullet> bullets = new LinkedList<>();
 
 	public void tick() {
-		Iterator<Bullet> it = bl.iterator();
+		Iterator<GameBullet> it = bullets.iterator();
 		while (it.hasNext()) {
-			Bullet bullet = it.next();
+			GameBullet bullet = it.next();
 			if (bullet.getY() < 0) {
-				it.remove(); // Elimina seguro usando el iterador
+				it.remove();
 			} else {
 				bullet.tick();
 			}
 		}
 	}
-	public synchronized List<Bullet> getBulletsCopy() {
-		return new ArrayList<>(bl);
+
+	public synchronized List<GameBullet> getBulletsCopy() {
+		return new ArrayList<>(bullets);
 	}
 
-
-	public void render(Graphics g){
-		for(int i=0; i < bl.size(); i++){
-			bl.get(i).render(g);
+	public void render(Graphics g) {
+		for (GameBullet bullet : bullets) {
+			bullet.render(g);
 		}
 	}
-	
-	public void addBullet(Bullet bullet){
-		bl.add(bullet);
-	}
-	
-	public void removeBullet(Bullet bullet){
-		bl.remove(bullet);
+
+	public void addBullet(GameBullet bullet) {
+		bullets.add(bullet);
 	}
 
-	public LinkedList<Bullet> getBullets() {
-		return bl;
+	public void removeBullet(GameBullet bullet) {
+		bullets.remove(bullet);
+	}
+
+	public LinkedList<GameBullet> getBullets() {
+		return bullets;
 	}
 }
