@@ -1,6 +1,7 @@
 com\balitechy\spacewar\main\BulletFlyweightFactory.class
 com\balitechy\spacewar\main\GameBullet.class
 com\balitechy\spacewar\main\EnemyType1Flyweight.class
+com\balitechy\spacewar\main\MemoryTest.class
 com\balitechy\spacewar\main\EnemyType2Flyweight.class
 com\balitechy\spacewar\main\FlyWeightFactory.class
 com\balitechy\spacewar\main\EnemyFlyweight.class
