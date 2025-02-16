@@ -1,32 +1,71 @@
 package com.balitechy.spacewar.main;
 
-public class MemoryTest {
+import java.util.LinkedList;
+import java.util.Random;
+
+public class MemoryTest{
+
     public static void main(String[] args) {
-        // Forzar recolección de basura y medir la memoria inicial
-        System.gc();
-        Runtime runtime = Runtime.getRuntime();
-        long memoryBefore = runtime.totalMemory() - runtime.freeMemory();
-        System.out.println("Memoria usada antes: " + memoryBefore + " bytes");
-
-        // Ejecutar la funcionalidad a testear
+        // Crear una instancia de Game para disponer de recursos (por ejemplo, sprites)
         Game game = new Game();
-        game.init();
+        game.init();  // Inicializa todos los componentes y carga las imágenes
 
-        // Por ejemplo, simular la creación de muchos enemigos y balas
-        // (Esto dependerá de la lógica de tu juego)
-        for (int i = 0; i < 1000; i++) {
-            // Agregar balas
-            game.getBullets().addBullet(new GameBullet(100, 100, game));
-            // Agregar enemigos de tipo 1
-            game.getEnemies().getEnemiesType1().add(new GameEnemy("enemy1", 50, -Enemy.HEIGHT, game));
-            // Agregar enemigos de tipo 2
-            game.getEnemies().getEnemiesType2().add(new GameEnemy("enemy2", 150, -Enemy2.HEIGHT, game));
+        // Forzar recolección de basura para obtener una medición estable
+        forceGC();
+        long memoryBefore = getUsedMemory();
+        System.out.println("Memoria usada ANTES de crear objetos: " + memoryBefore + " bytes");
+
+        // Número de instancias por cada tipo de enemigo y balas
+        int countEnemies = 10000;
+        int countBullets = 10000;
+        LinkedList<GameEnemy> enemyList1 = new LinkedList<>();
+        LinkedList<GameEnemy> enemyList2 = new LinkedList<>();
+        LinkedList<GameBullet> bulletList = new LinkedList<>();
+        Random random = new Random();
+
+        for (int i = 0; i < countEnemies; i++) {
+            enemyList1.add(new GameEnemy("enemy1",
+                    random.nextInt(Game.WIDTH * Game.SCALE - Enemy.WIDTH),
+                    -Enemy.HEIGHT,
+                    game
+            ));
+            enemyList2.add(new GameEnemy("enemy2",
+                    random.nextInt(Game.WIDTH * Game.SCALE - Enemy2.WIDTH),
+                    -Enemy2.HEIGHT,
+                    game
+            ));
         }
 
-        // Forzar recolección de basura y medir la memoria final
+        // Crear instancias de GameBullet (balas)
+        for (int i = 0; i < countBullets; i++) {
+            bulletList.add(new GameBullet(
+                    random.nextInt(Game.WIDTH * Game.SCALE - StandardBulletFlyweight.WIDTH),
+                    random.nextInt(Game.HEIGHT * Game.SCALE - StandardBulletFlyweight.HEIGHT),
+                    game
+            ));
+        }
+
+        // Forzar GC nuevamente para estabilizar la medición
+        forceGC();
+        long memoryAfter = getUsedMemory();
+        int totalObjects = (countEnemies * 2) + countBullets;
+        System.out.println("Memoria usada DESPUÉS de crear " + totalObjects + " objetos: " + memoryAfter + " bytes");
+        System.out.println("Incremento en memoria: " + (memoryAfter - memoryBefore) + " bytes");
+    }
+
+    // Método auxiliar para obtener la memoria utilizada
+    private static long getUsedMemory() {
+        Runtime runtime = Runtime.getRuntime();
+        return runtime.totalMemory() - runtime.freeMemory();
+    }
+
+    // Método para forzar el GC y pausar brevemente
+    private static void forceGC() {
         System.gc();
-        long memoryAfter = runtime.totalMemory() - runtime.freeMemory();
-        System.out.println("Memoria usada después: " + memoryAfter + " bytes");
-        System.out.println("Diferencia (bytes): " + (memoryAfter - memoryBefore));
+        try {
+            Thread.sleep(1000); // Espera 1 segundo para dar tiempo al GC
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
