@@ -1,4 +1,4 @@
-package com.balitechy.spacewar.main;
+package com.balitechy.spacewar.main.Bullets;
 
 import java.awt.Graphics;
 

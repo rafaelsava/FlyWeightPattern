@@ -1,4 +1,6 @@
-package com.balitechy.spacewar.main;
+package com.balitechy.spacewar.main.Bullets;
+
+import com.balitechy.spacewar.main.Game;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -20,10 +22,6 @@ public class GameBullet {
 
     public void render(Graphics g) {
         flyweight.render(g, x, y);
-    }
-
-    public int getX() {
-        return x;
     }
 
     public int getY() {

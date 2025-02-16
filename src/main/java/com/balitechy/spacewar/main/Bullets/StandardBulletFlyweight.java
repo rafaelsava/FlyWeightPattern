@@ -1,4 +1,6 @@
-package com.balitechy.spacewar.main;
+package com.balitechy.spacewar.main.Bullets;
+
+import com.balitechy.spacewar.main.Game;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;

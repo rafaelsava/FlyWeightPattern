@@ -1,9 +1,11 @@
-package com.balitechy.spacewar.main;
+package com.balitechy.spacewar.main.Enemies;
+
+import com.balitechy.spacewar.main.Game;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class FlyWeightFactory {
+public class EnemyFlyWeightFactory {
     private static final Map<String, EnemyFlyweight> pool = new HashMap<>();
     public static EnemyFlyweight getEnemyFlyweight(String type, Game game) {
         String key = type.toLowerCase();

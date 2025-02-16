@@ -1,5 +1,7 @@
 package com.balitechy.spacewar.main;
 
+import com.balitechy.spacewar.main.utils.SpritesImageLoader;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 

@@ -1,4 +1,4 @@
-package com.balitechy.spacewar.main;
+package com.balitechy.spacewar.main.Bullets;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -21,25 +21,22 @@ public class BulletController {
 		}
 	}
 
-	public synchronized List<GameBullet> getBulletsCopy() {
-		return new ArrayList<>(bullets);
-	}
-
 	public void render(Graphics g) {
 		for (GameBullet bullet : bullets) {
 			bullet.render(g);
 		}
 	}
 
+	public void removeBullets(ArrayList<GameBullet> bulletsToRemove) {
+		bullets.removeAll(bulletsToRemove);
+	}
+	// Devuelve una copia inmodificable
+	public List<GameBullet> getBulletsCopy() {
+		return new ArrayList<>(bullets);
+	}
+
 	public void addBullet(GameBullet bullet) {
 		bullets.add(bullet);
 	}
 
-	public void removeBullet(GameBullet bullet) {
-		bullets.remove(bullet);
-	}
-
-	public LinkedList<GameBullet> getBullets() {
-		return bullets;
-	}
 }
