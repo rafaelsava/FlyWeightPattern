@@ -301,8 +301,8 @@ public class Game extends Canvas implements Runnable {
 
 		// Procesar eliminaciones después de la iteración
 		bullets.getBullets().removeAll(bulletsToRemove);
-		enemies.getEnemiesType1Copy().removeAll(enemiesType1ToRemove);
-		enemies.getEnemiesType1Copy().removeAll(enemiesType2ToRemove);
+		enemies.getEnemiesType1().removeAll(enemiesType1ToRemove);
+		enemies.getEnemiesType2().removeAll(enemiesType2ToRemove);
 	}
 
 	// Método actualizado para colisiones con el jugador

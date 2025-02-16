@@ -33,7 +33,7 @@ public class EnemyController {
         updateEnemies(enemiesType2);
     }
 
-    // Método general para crear enemigos según el tipo
+
     private void spawnEnemy(String type) {
         int spawnX = random.nextInt(Game.WIDTH * Game.SCALE - (type.equals("enemy1") ? Enemy.WIDTH : Enemy2.WIDTH));
         int spawnY = - (type.equals("enemy1") ? Enemy.HEIGHT : Enemy2.HEIGHT);
@@ -72,5 +72,13 @@ public class EnemyController {
 
     public ArrayList<GameEnemy> getEnemiesType2Copy() {
         return new ArrayList<>(enemiesType2);
+    }
+    public LinkedList<GameEnemy> getEnemiesType1() {
+        return enemiesType1;
+    }
+
+    // Getter corregido para enemigos de tipo 2
+    public LinkedList<GameEnemy> getEnemiesType2() {
+        return enemiesType2;
     }
 }
