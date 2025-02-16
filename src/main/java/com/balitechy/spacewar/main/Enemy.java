@@ -3,7 +3,7 @@ package com.balitechy.spacewar.main;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Enemy {
+public class Enemy{
     private double x;
     private double y;
     private double velY;
@@ -28,7 +28,7 @@ public class Enemy {
         g.drawImage(image, (int) x, (int) y, null);
     }
 
-    public Rectangle getBounds() {
+     public Rectangle getBounds() {
         return new Rectangle(
                 (int)x,
                 (int)y,
@@ -37,7 +37,7 @@ public class Enemy {
         );
     }
 
-    public double getY() {
+        public double getY() {
         return y;
     }
 }

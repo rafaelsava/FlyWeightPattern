@@ -1,0 +1,5 @@
+com\balitechy\spacewar\main\EnemyFlyweight.class
+com\balitechy\spacewar\main\EnemyType1Flyweight.class
+com\balitechy\spacewar\main\GameEnemy.class
+com\balitechy\spacewar\main\EnemyType2Flyweight.class
+com\balitechy\spacewar\main\FlyWeightFactory.class

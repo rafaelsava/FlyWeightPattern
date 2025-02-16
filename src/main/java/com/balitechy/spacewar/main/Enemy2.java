@@ -26,7 +26,7 @@ public class Enemy2 {
         // Movimiento sinusoidal
         angle += 0.1;
         x += Math.sin(angle) * 0.8; // Movimiento lateral
-        y += 1.5; // Velocidad de caída
+        y += 2; // Velocidad de caída
 
         // Limites de pantalla
         if(x < 0) x = 0;

@@ -265,13 +265,13 @@ public class Game extends Canvas implements Runnable {
 	private void checkCollisions() {
 		// Obtener copias seguras de todas las listas
 		ArrayList<Bullet> bulletsCopy = new ArrayList<>(bullets.getBullets());
-		ArrayList<Enemy> enemiesType1Copy = enemies.getEnemiesType1Copy();
-		ArrayList<Enemy2> enemiesType2Copy = enemies.getEnemiesType2Copy();
+		ArrayList<GameEnemy> enemiesType1Copy = enemies.getEnemiesType1Copy();
+		ArrayList<GameEnemy> enemiesType2Copy = enemies.getEnemiesType2Copy();
 
 		// Listas temporales para elementos a eliminar
 		ArrayList<Bullet> bulletsToRemove = new ArrayList<>();
-		ArrayList<Enemy> enemiesType1ToRemove = new ArrayList<>();
-		ArrayList<Enemy2> enemiesType2ToRemove = new ArrayList<>();
+		ArrayList<GameEnemy> enemiesType1ToRemove = new ArrayList<>();
+		ArrayList<GameEnemy> enemiesType2ToRemove = new ArrayList<>();
 
 		// Verificar colisiones con Enemy (Tipo 1)
 		for (Bullet bullet : bulletsCopy) {
@@ -283,7 +283,7 @@ public class Game extends Canvas implements Runnable {
 			);
 
 			// Colisión con Enemy tipo 1
-			for (Enemy enemy : enemiesType1Copy) {
+			for (GameEnemy  enemy : enemiesType1Copy) {
 				if (bulletBounds.intersects(enemy.getBounds())) {
 					bulletsToRemove.add(bullet);
 					enemiesType1ToRemove.add(enemy);
@@ -291,7 +291,7 @@ public class Game extends Canvas implements Runnable {
 			}
 
 			// Colisión con Enemy tipo 2
-			for (Enemy2 enemy : enemiesType2Copy) {
+			for (GameEnemy  enemy : enemiesType2Copy) {
 				if (bulletBounds.intersects(enemy.getBounds())) {
 					bulletsToRemove.add(bullet);
 					enemiesType2ToRemove.add(enemy);
@@ -301,8 +301,8 @@ public class Game extends Canvas implements Runnable {
 
 		// Procesar eliminaciones después de la iteración
 		bullets.getBullets().removeAll(bulletsToRemove);
-		enemies.getEnemiesType1().removeAll(enemiesType1ToRemove);
-		enemies.getEnemiesType2().removeAll(enemiesType2ToRemove);
+		enemies.getEnemiesType1Copy().removeAll(enemiesType1ToRemove);
+		enemies.getEnemiesType1Copy().removeAll(enemiesType2ToRemove);
 	}
 
 	// Método actualizado para colisiones con el jugador
@@ -315,14 +315,14 @@ public class Game extends Canvas implements Runnable {
 		);
 
 		// Verificar contra ambos tipos de enemigos
-		for (Enemy enemy : enemies.getEnemiesType1Copy()) {
+		for (GameEnemy enemy : enemies.getEnemiesType1Copy()) {
 			if (playerBounds.intersects(enemy.getBounds())) {
 				triggerGameOver();
 				return;
 			}
 		}
 
-		for (Enemy2 enemy : enemies.getEnemiesType2Copy()) {
+		for (GameEnemy enemy : enemies.getEnemiesType2Copy()) {
 			if (playerBounds.intersects(enemy.getBounds())) {
 				triggerGameOver();
 				return;
