@@ -72,15 +72,17 @@ Al ejecutar el programa, deberías ver la siguiente salida:
 ## Diagrama UML
 El siguiente diagrama muestra la estructura del patrón implementado:
 
-![Diagrama UML](uml/diagrama.png)
+![GameFlyWeight](https://github.com/user-attachments/assets/ba8d7a02-fba7-4f9b-a2bb-fb3a7c47b257)
+
 
 ---
 
 ## Explicación de la Implementación
 El patrón FlyWeight ha sido implementado utilizando las siguientes clases principales:
-- **[Clase 1]**: Explicación del propósito de la clase.
-- **[Clase 2]**: Explicación del propósito de la clase.
-- **[Clase 3]**: Explicación del propósito de la clase.
+- **EnemyFlyweightFactory**: Administra la creación y reutilización de los objetos flyweight para los enemigos. Al solicitar un enemigo de un tipo específico (por ejemplo, "enemy1" o "enemy2"), verifica si ya existe un objeto compartido; si no, lo crea y lo almacena para futuras solicitudes.
+- **GameEnemy**: Representa cada instancia de enemigo en el juego. Esta clase almacena el estado extrínseco (como posición, velocidad y ángulo) y mantiene una referencia al flyweight correspondiente que contiene el estado intrínseco (imagen, sprite). Su método de renderizado combina ambos estados para dibujar el enemigo correctamente.
+- **BulletFlyweightFactory**: Se encarga de crear y gestionar la única instancia compartida (flyweight) para las balas.
+- **GameBullet**: Encapsula el estado extrínseco de cada bala (posición y movimiento) y delega el renderizado en el flyweight compartido.
 
 ---
 
