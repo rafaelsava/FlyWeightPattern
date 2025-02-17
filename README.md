@@ -25,18 +25,16 @@ nombre-del-proyecto
 
 ---
 
-## Dependencias Utilizadas
-Este proyecto utiliza las siguientes dependencias definidas en el archivo **pom.xml**:
+## Plugins Utilizados
+Este proyecto utiliza los siguientes plugins definidas en el archivo **pom.xml**:
 ```xml
-<dependencies>
-    <!-- Dependencias estándar de Maven -->
-    <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.13.2</version>
-        <scope>test</scope>
-    </dependency>
-</dependencies>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.3</version>
+            </plugin>
+        </plugins>
 ```
 
 ---
