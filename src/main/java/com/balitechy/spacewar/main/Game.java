@@ -1,12 +1,19 @@
 package com.balitechy.spacewar.main;
 
+import com.balitechy.spacewar.main.Bullets.BulletController;
+import com.balitechy.spacewar.main.Bullets.GameBullet;
+import com.balitechy.spacewar.main.Enemies.EnemyController;
+import com.balitechy.spacewar.main.Enemies.GameEnemy;
+import com.balitechy.spacewar.main.utils.BackgroundRenderer;
+import com.balitechy.spacewar.main.utils.InputHandler;
+import com.balitechy.spacewar.main.utils.SpritesImageLoader;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import javax.swing.JFrame;
 
@@ -263,35 +270,25 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	private void checkCollisions() {
-		ArrayList<GameBullet> bulletsCopy = new ArrayList<>(bullets.getBullets());
-		ArrayList<GameEnemy> enemiesType1Copy = enemies.getEnemiesType1Copy();
-		ArrayList<GameEnemy> enemiesType2Copy = enemies.getEnemiesType2Copy();
+		ArrayList<GameBullet> bulletsCopy = new ArrayList<>(bullets.getBulletsCopy());
+		ArrayList<GameEnemy> enemiesCopy = new ArrayList<>(enemies.getEnemiesCopy());
 
 		ArrayList<GameBullet> bulletsToRemove = new ArrayList<>();
-		ArrayList<GameEnemy> enemiesType1ToRemove = new ArrayList<>();
-		ArrayList<GameEnemy> enemiesType2ToRemove = new ArrayList<>();
+		ArrayList<GameEnemy> enemiesToRemove = new ArrayList<>();
 
 		for (GameBullet bullet : bulletsCopy) {
 			Rectangle bulletBounds = bullet.getBounds();
-
-			for (GameEnemy  enemy : enemiesType1Copy) {
+			for (GameEnemy enemy : enemiesCopy) {
 				if (bulletBounds.intersects(enemy.getBounds())) {
 					bulletsToRemove.add(bullet);
-					enemiesType1ToRemove.add(enemy);
-				}
-			}
-
-			for (GameEnemy  enemy : enemiesType2Copy) {
-				if (bulletBounds.intersects(enemy.getBounds())) {
-					bulletsToRemove.add(bullet);
-					enemiesType2ToRemove.add(enemy);
+					enemiesToRemove.add(enemy);
 				}
 			}
 		}
 
-		bullets.getBullets().removeAll(bulletsToRemove);
-		enemies.getEnemiesType1().removeAll(enemiesType1ToRemove);
-		enemies.getEnemiesType2().removeAll(enemiesType2ToRemove);
+		// Eliminar balas y enemigos colisionados
+		bullets.removeBullets(bulletsToRemove);
+		enemies.removeEnemies(enemiesToRemove); // <- Nuevo método en EnemyController
 	}
 
 	private void checkPlayerCollision() {
@@ -302,14 +299,8 @@ public class Game extends Canvas implements Runnable {
 				Player.HEIGHT
 		);
 
-		for (GameEnemy enemy : enemies.getEnemiesType1Copy()) {
-			if (playerBounds.intersects(enemy.getBounds())) {
-				triggerGameOver();
-				return;
-			}
-		}
-
-		for (GameEnemy enemy : enemies.getEnemiesType2Copy()) {
+		// Iterar sobre todos los enemigos (sin importar el tipo)
+		for (GameEnemy enemy : enemies.getEnemiesCopy()) {
 			if (playerBounds.intersects(enemy.getBounds())) {
 				triggerGameOver();
 				return;

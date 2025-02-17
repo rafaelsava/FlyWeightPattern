@@ -1,4 +1,6 @@
-package com.balitechy.spacewar.main;
+package com.balitechy.spacewar.main.Bullets;
+
+import com.balitechy.spacewar.main.Game;
 
 public class BulletFlyweightFactory {
     private static BulletFlyweight bulletFlyweight;

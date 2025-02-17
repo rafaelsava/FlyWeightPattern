@@ -1,4 +1,4 @@
-package com.balitechy.spacewar.main;
+package com.balitechy.spacewar.main.utils;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
