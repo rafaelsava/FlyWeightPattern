@@ -43,7 +43,7 @@ Este proyecto utiliza los siguientes plugins definidas en el archivo **pom.xml**
 
 1. **Clonar el repositorio:**
 ```bash
-git clone https://github.com/usuario/nombre_repositorio.git
+git clone https://github.com/rafaelsava/FlyWeightPattern.git
 cd nombre_repositorio
 ```
 
@@ -54,7 +54,7 @@ mvn clean compile
 
 3. **Ejecutar el proyecto:**
 ```bash
-mvn exec:java -Dexec.mainClass="com.ejemplo.Main"
+mvn exec:java -Dexec.mainClass="com.balitechy.spacewar.main.Game"
 ```
 
 ---
