@@ -1,5 +1,7 @@
 package com.balitechy.spacewar.main;
 
+import com.balitechy.spacewar.main.Bullets.GameBullet;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -50,9 +52,9 @@ public class Player {
 	public void setVelY(double velY) {
 		this.velY = velY;
 	}
-	
+
 	public void shoot(){
-		Bullet b = new Bullet(x+(WIDTH/2)-5, y-18, game);
+		GameBullet b = new GameBullet((int)x + (WIDTH/2) - 5, (int)y - 18, game);
 		game.getBullets().addBullet(b);
 	}
 

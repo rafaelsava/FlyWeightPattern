@@ -1,7 +1,6 @@
-package com.balitechy.spacewar.main;
+package com.balitechy.spacewar.main.utils;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;

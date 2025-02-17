@@ -1,4 +1,6 @@
-package com.balitechy.spacewar.main;
+package com.balitechy.spacewar.main.utils;
+
+import com.balitechy.spacewar.main.Game;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
