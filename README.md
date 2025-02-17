@@ -1,5 +1,5 @@
 
-# Implementación del Patrón [Nombre del Patrón]
+# Implementación del Patrón FlyWeight
 
 ## Descripción del Patrón
 El patrón FlyWeight es utilizado para mantener más objetos dentro de la cantidad disponible de RAM compartiendo las partes comunes del estado entre varios objetos en lugar de mantener toda la información en cada objeto. Este proyecto demuestra su implementación mediante un ejemplo práctico en **Java** utilizando **Maven** como gestor de dependencias.
@@ -63,9 +63,12 @@ mvn exec:java -Dexec.mainClass="com.ejemplo.Main"
 
 ## Ejemplo de Ejecución
 Al ejecutar el programa, deberías ver la siguiente salida:
-```
-[Ejemplo de resultado del programa]
-```
+---
+<img width="322" alt="Captura de pantalla 2025-02-16 221634" src="https://github.com/user-attachments/assets/ce5d7fca-cbfb-4113-bd5e-76abbad23c40" />
+<img width="322" alt="Captura de pantalla 2025-02-16 221645" src="https://github.com/user-attachments/assets/bf276129-112a-42c0-9d3b-6ae92089a83b" />
+
+
+---
 
 ---
 
